@@ -21,3 +21,5 @@ def create_movie(title, genre, rating):
 # ------------- WAVE 5 --------------------
 # -----------------------------------------
 
+def chat():
+    print("Hello!!")
