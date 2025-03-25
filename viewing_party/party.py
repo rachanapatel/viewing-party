@@ -19,17 +19,34 @@ def add_to_watchlist(user_data, movie):
 
 
 def watch_movie(user_data, title):
+    # print(user_data)
     for movie_dict in user_data["watchlist"]:
         print(movie_dict)
         if movie_dict["title"] == title:
             user_data["watchlist"].remove(movie_dict)
             user_data["watched"].append(movie_dict)
             break
-        
+
 
     # if title in user_data["watchlist"]
 
+    # print(user_data)
     return user_data
+
+
+
+# janes_data = {
+#     "watchlist": [{
+#     "title": "MOVIE_TITLE_1",
+#     "genre": "GENRE_1",
+#     "rating": "RATING_1"
+#     }],
+#     "watched": []
+#     }
+
+#     # Act
+# watch_movie(janes_data, "MOVIE_TITLE_1")
+
 
 
 # -----------------------------------------
@@ -96,6 +113,43 @@ def get_most_watched_genre(user_data):
 # -----------------------------------------
 # ------------- WAVE 3 --------------------
 # -----------------------------------------
+
+def get_unique_watched(user_data):
+    # for mov in user_data["watched"]:
+    #     print(mov["title"]) #will get each movie title watched
+
+    full_friends_movies = []
+    for friend_list in user_data["friends"]:
+        for friend_mov in friend_list["watched"]:
+            # print(friend_mov["title"]) #will get each movie title
+            full_friends_movies.append(friend_mov["title"])
+        print("break")
+
+
+    new_movies = []
+    for mov in user_data["watched"]:
+        if mov["title"] not in full_friends_movies:
+            new_movies.append(mov)
+
+    print(new_movies) #will get each movie title watched
+    return new_movies
+
+
+
+def get_friends_unique_watched(user_data):
+    full_user_movies = []
+    for mov in user_data["watched"]:
+        full_user_movies.append(mov["title"])
+
+    new_movies = []
+    for friend_list in user_data["friends"]:
+        for friend_mov in friend_list["watched"]:
+            if (friend_mov["title"] not in full_user_movies) and (friend_mov not in new_movies):
+                new_movies.append(friend_mov)
+
+
+    print(new_movies)
+    return new_movies
 
         
 # -----------------------------------------
